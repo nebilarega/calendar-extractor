@@ -1,0 +1,16 @@
+idea
+.idea
+.DS_Store
+
+frontend/node_modules
+frontend/package-lock.json
+frontend/.idea
+frontend/idea
+frontend/DS_Store
+frontend/build
+
+back/node_modules
+back/package-lock.json
+back/.idea
+back/idea
+back/DS_Store
