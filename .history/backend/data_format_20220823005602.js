@@ -2,6 +2,10 @@ const fs = require("fs");
 let raw_data = fs.readFileSync("data.json");
 let data = JSON.parse(raw_data);
 
+// data.forEach((a) => {
+//   console.log(a);
+// });
+
 let processedData = [];
 
 let string = "August 22, 2022 2:00 PM-8:00 PM";
@@ -27,8 +31,7 @@ data.forEach((obj) => {
     location: obj.location,
     start: format_time(obj.Time).start,
     end: format_time(obj.Time).end,
-    hangoutLink: obj.link,
   });
 });
-let json = JSON.stringify(processedData);
-fs.writeFileSync("cleaned_data.json", json);
+
+fs.writeFileSync("cleaned_data.json", processedData);

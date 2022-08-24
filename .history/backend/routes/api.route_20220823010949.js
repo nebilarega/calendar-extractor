@@ -64,13 +64,14 @@ router.post("/create-events", async (req, res, next) => {
     calendarId: "primary",
     requestBody: {
       summary: submmary,
-      description: description + hangoutLink,
+      description: description,
       start: {
         dateTime: new Date(start),
       },
       end: {
         dateTime: new Date(end),
       },
+      hangoutLink: hangoutLink,
     },
   });
   res.send(response);

@@ -17,7 +17,20 @@ const sampleData = {
 const App = () => {
   let url;
   const [disabled, setDisabled] = useState(false);
-  const [postDisable, setPostDisable] = useState(false);
+  const responseGoogle = (response) => {
+    const code = response;
+    axios
+      .post("/api/create-tokens", code)
+      .then((response) => {
+        console.log("response", response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+  const responseError = (response) => {
+    console.log(response);
+  };
   const getUrl = () => {
     axios.get("/api/create-token-v2").then((response) => {
       url = response.data.url;
@@ -29,16 +42,15 @@ const App = () => {
   };
   const handleClick = () => {
     axios.post("/api/create-events", sampleData).then((response) => {
-      setPostDisable(true);
+      console.log("response", response.data);
     });
   };
   return (
-    <div className="App" style={{ height: "100vh" }}>
+    <div className="App" style={{ height: "100%" }}>
       <LandingPage
         disabled={disabled}
         getUrl={getUrl}
         handleClick={handleClick}
-        postDisable={postDisable}
       ></LandingPage>
     </div>
   );

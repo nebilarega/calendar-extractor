@@ -3,11 +3,8 @@ import { GoogleOAuthProvider } from "@react-oauth/google";
 import { GoogleLogin } from "@react-oauth/google";
 import { useState } from "react";
 import axios from "axios";
-
-import LandingPage from "./component/LandingPage";
-
 const sampleData = {
-  submmary: "Nebil this is a new event",
+  submmary: "Google I/O 2015",
   description: "A chance to hear more about Google's developer products.",
   location: "800 Howard St., San Francisco, CA 94103",
   start: "August 23, 2022 8:00 AM UTC",
@@ -17,8 +14,21 @@ const sampleData = {
 const App = () => {
   let url;
   const [disabled, setDisabled] = useState(false);
-  const [postDisable, setPostDisable] = useState(false);
-  const getUrl = () => {
+  const responseGoogle = (response) => {
+    const code = response;
+    axios
+      .post("/api/create-tokens", code)
+      .then((response) => {
+        console.log("response", response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+  const responseError = (response) => {
+    console.log(response);
+  };
+  const getUrlsth = () => {
     axios.get("/api/create-token-v2").then((response) => {
       url = response.data.url;
       if (url) {
@@ -29,17 +39,20 @@ const App = () => {
   };
   const handleClick = () => {
     axios.post("/api/create-events", sampleData).then((response) => {
-      setPostDisable(true);
+      console.log("response", response.data);
     });
   };
   return (
-    <div className="App" style={{ height: "100vh" }}>
-      <LandingPage
-        disabled={disabled}
-        getUrl={getUrl}
-        handleClick={handleClick}
-        postDisable={postDisable}
-      ></LandingPage>
+    <div className="App">
+      {disabled ? (
+        <div>
+          <button onClick={handleClick}>Post an event</button>
+        </div>
+      ) : (
+        <button onClick={getUrlsth} disabled={disabled}>
+          Click Me
+        </button>
+      )}
     </div>
   );
 };
