@@ -6,7 +6,7 @@ const fs = require("fs");
 const outh2Client = new google.auth.OAuth2(
   process.env.CLIENT_ID,
   process.env.CLIENT_SECRET,
-  `${process.env.BACKEND_HOST}/api/steps`
+  "http://localhost:3001/api/steps"
 );
 
 let refresh_token;

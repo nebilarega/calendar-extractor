@@ -6,13 +6,8 @@ import axios from "axios";
 
 import LandingPage from "./component/LandingPage";
 
-const sampleData = {
-  submmary: "Nebil this is a new event",
-  description: "A chance to hear more about Google's developer products.",
-  location: "800 Howard St., San Francisco, CA 94103",
-  start: "August 23, 2022 8:00 AM UTC",
-  end: "August 23, 2022 9:00 AM UTC",
-  hangoutLink: "meet.google.com/ysb-kjdn-hpp",
+const message = {
+  message: "Schedule the event",
 };
 const App = () => {
   let url;
@@ -28,7 +23,7 @@ const App = () => {
     });
   };
   const handleClick = () => {
-    axios.post("/api/create-events", sampleData).then((response) => {
+    axios.post("/api/create-events", message).then((response) => {
       setPostDisable(true);
     });
   };

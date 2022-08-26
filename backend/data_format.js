@@ -12,8 +12,8 @@ function getPosition(string, subString, index) {
 
 function format_time(time) {
   let index = getPosition(time, " ", 3);
-  let start_end = string.substring(index + 1);
-  let pre = string.substring(0, index + 1);
+  let start_end = time.substring(index + 1);
+  let pre = time.substring(0, index + 1);
   let start =
     pre + start_end.substring(0, getPosition(start_end, "-", 1)) + " UTC";
   let end =
