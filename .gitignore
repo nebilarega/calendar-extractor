@@ -1,6 +1,7 @@
 idea
 .idea
 .DS_Store
+.history/
 
 frontend/node_modules
 frontend/package-lock.json
