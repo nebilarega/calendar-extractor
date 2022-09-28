@@ -1,5 +1,4 @@
 import "../css/landing.css";
-import { useState } from "react";
 
 const LandingPage = ({ disabled, handleClick, getUrl, postDisable }) => {
   return (
